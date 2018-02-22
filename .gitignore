@@ -1,0 +1,11 @@
+.idea/
+env/
+*.pyc
+*.log
+media/
+.cache
+.DS_Store
+db.sqlite3
+log/
+config.env
+.pytest_cache/

@@ -1,0 +1,7 @@
+# The base set of requirements for Celery Model Result is actually
+# just Django, but for the purposes of development and testing
+# there are a number of packages that are useful to install.
+
+-r requirements/requirements-basic.txt
+-r requirements/requirements-optional.txt
+-r requirements/requirements-testing.txt
