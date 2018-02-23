@@ -34,8 +34,12 @@ class ModelResultTaskBase(Task):
         for attr_name, field_name in task_default_fields:
             if not hasattr(self, attr_name):
                 setattr(self, attr_name, field_name)
+
             assert self._check_if_model_has_field(getattr(self, attr_name)), \
-                f'Class "{self.instance_class}" does not have field "{getattr(self, attr_name)}"'
+                'Class "{instance_class}" does not have field "{field}"'.format(
+                    instance_class=self.instance_class,
+                    field=getattr(self, attr_name)
+                )
 
     def _get_default_fields(self):
         task_default_fields = (
@@ -78,7 +82,10 @@ class ModelResultTaskBase(Task):
 class ChordTaskMixin:
     def __call__(self, chord_result, instance_pk, *args, **kwargs):
         # celery chord require first parameter to be list of results
-        return super().__call__(instance_pk, *args, **kwargs, chord_result=chord_result)
+        kwargs.update({
+            'chord_result': chord_result
+        })
+        return super().__call__(instance_pk, *args, **kwargs)
 
 
 class ModelResultChordTaskBase(ChordTaskMixin, ModelResultTaskBase):

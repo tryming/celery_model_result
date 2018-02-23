@@ -42,9 +42,14 @@ class TaskLockModel(models.Model):
             self.__raise_lock_error(self.current_operation)
 
     def __raise_lock_error(self, current_operation):
-            raise LockedTaskException(_(f'Another operation is already in progress in '
-                                        f'{self._meta.model_name} {self.name}. '
-                                        f'Currently running operation: {current_operation}'))
+            raise LockedTaskException(
+                _('Another operation is already in progress in '
+                  '{model_name} {name}. '
+                  'Currently running operation: {current_operation}').format(
+                    model_name=self._meta.model_name,
+                    name=self.name,
+                    current_operation=current_operation
+                ))
 
     def change_operation_label(self, operation):
         """

@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: celery-model-result
+Version: 0.1.0
+Summary: Library making running celery tasks easier
+Home-page: https://bitbucket.org/bitcraftteam/celery_model_result
+Author: BitCraft Ltd.
+Author-email: contact@bitcraft.com.pl
+License: UNKNOWN
+Description-Content-Type: UNKNOWN
+Description: Some example long description
+Keywords: celery tasks status result model chord locks
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Celery Tools
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3.6
