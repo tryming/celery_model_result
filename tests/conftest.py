@@ -5,7 +5,6 @@ def pytest_configure(config):
     from django.conf import settings
 
     settings.configure(
-        # DEBUG=True,
         DEBUG_PROPAGATE_EXCEPTIONS=True,
         DATABASES={
             'default': {
@@ -26,10 +25,6 @@ def pytest_configure(config):
             'django.contrib.sessions',
             'django.contrib.sites',
             'django.contrib.staticfiles',
-            # 'rest_framework',
-            # 'rest_framework.authtoken',
-            # 'tests.importable',
-            # 'tests',
             'celery_model_result',
             'tests',
         ),
