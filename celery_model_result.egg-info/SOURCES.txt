@@ -1,4 +1,4 @@
-README.rst
+README.md
 setup.py
 celery_model_result/__init__.py
 celery_model_result/exceptions.py

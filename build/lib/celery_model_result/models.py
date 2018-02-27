@@ -25,19 +25,16 @@ class TaskLockModel(models.Model):
     class Meta:
         abstract = True
 
-    def _perform_acquire_lock(self, operation):
-        locked_self = self._meta.model.objects.select_for_update(nowait=True).get(pk=self.pk)
-        if locked_self.is_locked:
-            self.__raise_lock_error(locked_self.current_operation)
-        locked_self.is_locked = True
-        locked_self.current_operation = operation
-        locked_self.current_operation_start = timezone.now()
-        locked_self.save()
-
     @transaction.atomic
     def _acquire_lock(self, operation):
         try:
-            self._perform_acquire_lock(operation)
+            locked_self = self._meta.model.objects.select_for_update(nowait=True).get(pk=self.pk)
+            if locked_self.is_locked:
+                self.__raise_lock_error(locked_self.current_operation)
+            locked_self.is_locked = True
+            locked_self.current_operation = operation
+            locked_self.current_operation_start = timezone.now()
+            locked_self.save()
         except DatabaseError:
             self.refresh_from_db()
             if not self.is_locked:

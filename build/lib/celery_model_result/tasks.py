@@ -12,7 +12,7 @@ class ModelResultTaskBase(Task):
         self.instance = None
         self._initialize_task_fields()
 
-    def _update_instance_status(self, new_status: tuple, result=None) -> None:
+    def _update_instance_status(self, new_status, result=None):
         setattr(self.instance, self.status_field, new_status[0])
         update_fields = (self.status_field,)
         if result is not None:
@@ -20,7 +20,7 @@ class ModelResultTaskBase(Task):
             update_fields += (self.result_field,)
         self.instance.save(update_fields=update_fields)
 
-    def _check_if_model_has_field(self, field: str) -> bool:
+    def _check_if_model_has_field(self, field):
         try:
             opts = self.instance_class._meta
             opts.get_field(field)
@@ -28,7 +28,7 @@ class ModelResultTaskBase(Task):
         except FieldDoesNotExist:
             return False
 
-    def _initialize_task_fields(self) -> None:
+    def _initialize_task_fields(self):
         # TODO (m.lach) Fill docs, status_field and result_field passed in task declaration
         task_default_fields = self._get_default_fields()
         for attr_name, field_name in task_default_fields:
@@ -41,7 +41,7 @@ class ModelResultTaskBase(Task):
                     field=getattr(self, attr_name)
                 )
 
-    def _get_default_fields(self) -> tuple:
+    def _get_default_fields(self):
         task_default_fields = (
             ('status_field', self.DEFAULT_STATUS_FIELD),
             ('result_field', self.DEFAULT_RESULT_FIELD),
@@ -50,6 +50,7 @@ class ModelResultTaskBase(Task):
 
     def __call__(self, instance_pk, *args, **kwargs):
         self.instance = self.instance_class.objects.get(pk=instance_pk)
+        # self._initialize_task_fields()
         self._update_instance_status(statuses.STATUS_PENDING)
         return self.run(instance_pk=instance_pk, *args, **kwargs)
 

@@ -20,5 +20,5 @@ For more details see docs or example tasks.
 <https://bitbucket.org/bitcraftteam/celery_model_result>`
 
 
-TODO (m.lach) Add information about running tests just like it is done in DRF
+Information about contributing can be found in CONTRIBUTING.md file
 

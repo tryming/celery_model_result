@@ -1,6 +1,6 @@
 import factory
 
-from tests.models import SampleModel, SampleCustomStatusModel, SampleCustomResultModel
+from tests.models import SampleModel, SampleCustomStatusModel, SampleCustomResultModel, SampleLockModel
 
 
 class NameFakerMixin:
@@ -20,3 +20,8 @@ class SampleCustomStatusModelFactory(NameFakerMixin, factory.DjangoModelFactory)
 class SampleCustomResultModelFactory(NameFakerMixin, factory.DjangoModelFactory):
     class Meta:
         model = SampleCustomResultModel
+
+
+class SampleLockModelFactory(NameFakerMixin, factory.DjangoModelFactory):
+    class Meta:
+        model = SampleLockModel

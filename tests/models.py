@@ -1,7 +1,7 @@
 from django.db import models
 
 from celery_model_result import fields
-from celery_model_result.models import TaskResultModelBase
+from celery_model_result.models import TaskResultModelBase, TaskLockModel
 
 
 class CeleryModelResultModel(models.Model):
@@ -29,3 +29,7 @@ class SampleCustomStatusModel(BaseSampleModel):
 class SampleCustomResultModel(BaseSampleModel):
     status = fields.TaskStatusField()
     result_custom = fields.TaskResultField()
+
+
+class SampleLockModel(SampleModel, TaskLockModel):
+    pass
