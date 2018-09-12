@@ -14,11 +14,5 @@ This project offers following functionalities:
 
 Library provides base classes for tasks and models enabling mentioned above functions.
 
-For more details see docs or example tasks.
-
-`The source for this project is available here
-<https://bitbucket.org/bitcraftteam/celery_model_result>`
-
-
 Information about contributing can be found in CONTRIBUTING.md file
 
