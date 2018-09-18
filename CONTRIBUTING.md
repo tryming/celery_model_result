@@ -2,7 +2,7 @@
 
 To start developing on Django REST framework, clone the repo:
 
-    git clone git@bitbucket.org:bitcraftteam/celery_model_result.git
+    git clone git@github.com:tryming/celery_model_result.git
 
 Changes should broadly follow the [PEP 8][pep-8] style conventions, and we recommend you set up your editor to automatically indicate non-conforming styles.
 
